@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { deletePost, getPost } from "../api/PostApi";
 import "../App.css";
+import { Form } from "./Form";
 
 export const Posts = () => {
   const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ export const Posts = () => {
       const res = await deletePost(id);
       console.log(res);
 
-      if (res.status === 200) {
+      if (res.status == 200) {
         const newUpdatedPosts = data.filter((currPost) => {
           return currPost.id !== id;
         });
@@ -32,24 +33,29 @@ export const Posts = () => {
   };
 
   return (
-    <section className="section-post">
-      <ol>
-        {data.map((currElem) => {
-          const { id, body, title } = currElem;
-          return (
-            <li key={id}>
-              <p>Title: {title}</p>
-              <p>Body: {body}</p>
-              <button>Edit</button>
-              <button
-                className="btn-delete"
-                onClick={() => handleDeletePost(id)}>
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ol>
-    </section>
+    <>
+      <section className="section-form">
+        <Form data={data} setData={setData} />
+      </section>
+      <section className="section-post">
+        <ol>
+          {data.map((currElem) => {
+            const { id, body, title } = currElem;
+            return (
+              <li key={id}>
+                <p>Title: {title}</p>
+                <p>Body: {body}</p>
+                <button>Edit</button>
+                <button
+                  className="btn-delete"
+                  onClick={() => handleDeletePost(id)}>
+                  Delete
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    </>
   );
 };

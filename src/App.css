@@ -47,6 +47,27 @@ button:hover {
   align-items: center;
 }
 
+.section-form {
+  padding: 1.6rem;
+  background-color: #212f3d;
+  border-radius: 0.6rem;
+  margin: auto;
+
+  form {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  & input {
+    width: 24rem;
+    color: #212f3d;
+    border: 0.1rem solid grey;
+    outline: none;
+    border-radius: 0.3rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
 .section-post {
   width: 90%;
   & ol {
